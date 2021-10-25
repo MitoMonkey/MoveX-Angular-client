@@ -25,11 +25,9 @@ export class FetchApiDataService {
 
   // API call for the user login endpoint
   public userLogin(userCredentials: any): Observable<any> {
-    console.log(userCredentials);
+    // console.log(userCredentials);
     return this.http.post(apiUrl + 'login', userCredentials).pipe(
       map(this.extractResponseData),
-      // localStorage.setItem('token', body.token),
-      // localStorage.setItem('user', JSON.stringify(authData.user)),
       catchError(this.handleError)
     );
   }
@@ -172,24 +170,28 @@ export class FetchApiDataService {
 
 
   // Non-typed response extraction
-  private extractResponseData(res: Response | Object): any { // | Object
+  private extractResponseData(res: Response | Object): any {
     const body = res;
     return body || {};
   }
 
   private handleError(error: HttpErrorResponse): any {
+    let errorMessage;
     if (error.error instanceof ErrorEvent) {
       console.error('Some error occurred:', error.error.message);
     }
     if (error.status === 422) {
-      throwError('Some value you entered is invalid.')
+      errorMessage = 'Some value you entered is invalid.';
+    }
+    if (error.status === 400) {
+      errorMessage = 'User not found / Credentials are invalid.';
     }
     else {
       console.error(
         `Error Status code ${error.status}, ` +
         `Error body is: ${error.error}`);
+      errorMessage = 'Something bad happend. Please try again later or issue a bug report.';
     }
-    return throwError(
-      `Error ${error.status} : ${error.error}`);
+    return throwError(errorMessage)
   }
 }

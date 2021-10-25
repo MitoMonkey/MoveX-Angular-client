@@ -8,20 +8,19 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 // API calls service
 import { FetchApiDataService } from '../fetch-api-data.service';
 
-@Component({ // tell Angular that the class right below is a component
-  selector: 'app-user-registration-form',
-  templateUrl: './user-registration-form.component.html',
-  styleUrls: ['./user-registration-form.component.scss']
+@Component({
+  selector: 'app-login-form',
+  templateUrl: './login-form.component.html',
+  styleUrls: ['./login-form.component.scss']
 })
-
-export class UserRegistrationFormComponent implements OnInit {
+export class LoginFormComponent implements OnInit {
 
   // bind form input values to userData object
-  @Input() userData = { Username: '', Password: '', Email: '', Birthday: '' };
+  @Input() userCredentials = { Username: '', Password: '' };
 
   constructor(
     public fetchApiData: FetchApiDataService,
-    public dialogRef: MatDialogRef<UserRegistrationFormComponent>,
+    public dialogRef: MatDialogRef<LoginFormComponent>,
     public snackBar: MatSnackBar
   ) { }
 
@@ -30,15 +29,21 @@ export class UserRegistrationFormComponent implements OnInit {
   }
 
   // function to send form inputs to the backend
-  registerUser(): void {
-    this.fetchApiData.userRegistration(this.userData).subscribe((result) => {
+  login(): void {
+    this.fetchApiData.userLogin(this.userCredentials).subscribe((result) => {
 
-      // Logic for a successful user registration goes here! (To be implemented)
+      // Logic for a successful user login goes here! (To be implemented)
 
       this.dialogRef.close(); // This will close the modal on success. (it is opened in the root component method openUserRegistrationDialog)
-      // console.log(result);
 
-      let successMessage = 'Successfully registered new user: ' + result.Username;
+      /* console.log('result: ' + result);
+      console.log('result: ' + result.token);
+      console.log('result: ' + JSON.stringify(result.user)); */
+
+      // localStorage.setItem('token', result.token);
+      // localStorage.setItem('user', JSON.stringify(result.user));
+
+      let successMessage = 'Successfully logged in user: ' + result.user.Username;
       this.snackBar.open(successMessage, 'OK', {
         duration: 4000
       });
@@ -49,5 +54,6 @@ export class UserRegistrationFormComponent implements OnInit {
       });
     });
   }
+
 
 }
