@@ -40,8 +40,8 @@ export class LoginFormComponent implements OnInit {
       console.log('result: ' + result.token);
       console.log('result: ' + JSON.stringify(result.user)); */
 
-      // localStorage.setItem('token', result.token);
-      // localStorage.setItem('user', JSON.stringify(result.user));
+      localStorage.setItem('token', result.token);
+      localStorage.setItem('user', JSON.stringify(result.user));
 
       let successMessage = 'Successfully logged in user: ' + result.user.Username;
       this.snackBar.open(successMessage, 'OK', {

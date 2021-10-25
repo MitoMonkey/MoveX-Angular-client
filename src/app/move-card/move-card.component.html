@@ -1,0 +1,7 @@
+<mat-card *ngFor="let move of moves; let i=index;">
+    <!-- *ngFor directive is used to display all returned moves, with each move in its own card -->
+    <mat-dialog-content>
+        <mat-card-title>{{move.Title}}</mat-card-title>
+        <mat-card-subtitle><img src={{move.ImgURL}} /></mat-card-subtitle>
+    </mat-dialog-content>
+</mat-card>

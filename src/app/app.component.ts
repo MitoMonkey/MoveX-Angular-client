@@ -2,9 +2,12 @@ import { Component } from '@angular/core';
 
 import { FormGroup, FormControl } from '@angular/forms';
 
+import { MatDialog } from '@angular/material/dialog';
+
 import { UserRegistrationFormComponent } from './user-registration-form/user-registration-form.component';
 import { LoginFormComponent } from './login-form/login-form.component';
-import { MatDialog } from '@angular/material/dialog';
+
+import { MoveCardComponent } from './move-card/move-card.component';
 
 @Component({
   selector: 'app-root',
@@ -30,6 +33,11 @@ export class AppComponent {
     });
   }
 
+  openMovesDialog(): void {
+    this.dialog.open(MoveCardComponent, {
+      width: '500px'
+    });
+  }
 
   /*   // For the dummy template-driven form
     value = ''

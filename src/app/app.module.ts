@@ -15,12 +15,14 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { UserRegistrationFormComponent } from './user-registration-form/user-registration-form.component';
 import { LoginFormComponent } from './login-form/login-form.component';
+import { MoveCardComponent } from './move-card/move-card.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     UserRegistrationFormComponent,
-    LoginFormComponent
+    LoginFormComponent,
+    MoveCardComponent
   ],
   imports: [
     BrowserModule,
