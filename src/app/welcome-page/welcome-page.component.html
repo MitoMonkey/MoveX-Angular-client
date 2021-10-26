@@ -1,11 +1,13 @@
-<div class="main-page">
+<div class="main-page" role="main">
     <h1>
         Welcome to MoveX!
     </h1>
-    <button mat-raised-button (click)="openUserRegistrationDialog()" style="margin-right: 10px;" color="primary">
-        Sign Up
-    </button>
-    <button mat-raised-button (click)="openUserLoginDialog()" style="margin-right: 10px;" color="primary">
-        Login
-    </button>
+    <div class="card-container">
+        <button mat-raised-button (click)="openUserRegistrationDialog()" color="primary" class="card card-small">
+            Sign Up
+        </button>
+        <button mat-raised-button (click)="openUserLoginDialog()" color="primary" class="card card-small">
+            Login
+        </button>
+    </div>
 </div>
