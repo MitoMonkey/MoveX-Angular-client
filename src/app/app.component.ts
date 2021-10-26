@@ -6,7 +6,6 @@ import { MatDialog } from '@angular/material/dialog';
 
 import { UserRegistrationFormComponent } from './user-registration-form/user-registration-form.component';
 import { LoginFormComponent } from './login-form/login-form.component';
-
 import { MoveCardComponent } from './move-card/move-card.component';
 
 @Component({
@@ -17,27 +16,30 @@ import { MoveCardComponent } from './move-card/move-card.component';
 export class AppComponent {
   title = 'MoveX-Angular-client';
 
-  constructor(public dialog: MatDialog) { }
+  constructor(
+    // public dialog: MatDialog
+  ) { }
 
-  // open a dialog when the signup button is clicked (the dialog is defined in user-registration-form.component.ts)
-  openUserRegistrationDialog(): void {
-    this.dialog.open(UserRegistrationFormComponent, {
-      width: '280px'
-    });
-  }
+  /*   // open a dialog when the signup button is clicked (the dialog is defined in user-registration-form.component.ts)
+    // MOVED TO WELCOME-PAGE.component
+    openUserRegistrationDialog(): void {
+      this.dialog.open(UserRegistrationFormComponent, {
+        width: '280px'
+      });
+    }
+  
+    // open login dialog > MOVED TO WELCOME-PAGE.component
+    openLoginDialog(): void {
+      this.dialog.open(LoginFormComponent, {
+        width: '480px'
+      });
+    } */
 
-  // open login dialog
-  openLoginDialog(): void {
-    this.dialog.open(LoginFormComponent, {
-      width: '480px'
-    });
-  }
-
-  openMovesDialog(): void {
+  /* openMovesDialog(): void {
     this.dialog.open(MoveCardComponent, {
       width: '500px'
     });
-  }
+  } */
 
   /*   // For the dummy template-driven form
     value = ''
