@@ -1,46 +1,48 @@
-  /* .card-container {
+  .card {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-top: 16px;
+    flex-direction: column;
+    /* flex: 1 1 auto; */
+    justify-content: space-between;
   }
 
-  .card {
-    all: unset;
-    border-radius: 4px;
-    border: 1px solid #eee;
-    background-color: #fafafa;
-    height: 40px;
-    width: 200px;
-    margin: 0 8px 16px;
-    padding: 16px;
+  img {
+    box-shadow: 0 4px 17px rgba(0, 0, 0, 0.35);
+  }
+
+  .mat-card-title {
+    margin-top: 12px;
+  }
+  .mat-card-subtitle {
+    margin: 0;
+  }
+  .text-item {
+    padding: 5px 0 5px;
+  }
+
+  .actions {
+    padding-bottom: 12px !important;
+    margin: 0 !important;
     display: flex;
+    /* flex-wrap: wrap; */
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
+  }
+  .btn {
+    border-radius: 4px;
+    height: 35px;
+    width: 80px;
+    margin: 0 !important;
     transition: all 0.2s ease-in-out;
     line-height: 24px;
-  }
-
-  .card.card-small {
-    height: 16px;
-    width: 168px;
-  }
-
-  .card-container .card:not(.highlight-card) {
     cursor: pointer;
   }
-
-  .card-container .card:not(.highlight-card):hover {
+  .btn:hover {
     transform: translateY(-3px);
     box-shadow: 0 4px 17px rgba(0, 0, 0, 0.35);
   }
 
-  .card-container .card:not(.highlight-card):hover .material-icons path {
-    fill: rgb(105, 103, 103);
-  }
-
-
+/*
   a,
   a:visited,
   a:hover {
