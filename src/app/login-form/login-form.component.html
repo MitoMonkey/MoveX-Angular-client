@@ -12,11 +12,12 @@
                 <input matInput [(ngModel)]="userCredentials.Password" type="password" placeholder="Password"
                     name="Password" required>
             </mat-form-field>
+            <mat-card-actions class="button-wrapper">
+                <button mat-raised-button (click)="login()" color="primary" type="submit">
+                    Log in
+                </button>
+            </mat-card-actions>
         </form>
     </mat-card-content>
-    <mat-card-actions class="button-wrapper">
-        <button mat-raised-button (click)="login()" color="primary">
-            Log in
-        </button>
-    </mat-card-actions>
+
 </mat-card>

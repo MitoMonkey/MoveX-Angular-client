@@ -3,6 +3,7 @@ import { FetchApiDataService } from '../fetch-api-data.service';
 import { MatDialog } from '@angular/material/dialog';
 
 import { StyleComponent } from '../style/style.component';
+import { SourceComponent } from '../source/source.component';
 
 @Component({
   selector: 'app-move-card',
@@ -37,6 +38,13 @@ export class MoveCardComponent implements OnInit {
     this.dialog.open(StyleComponent, {
       width: '480px',
       data: { style: style, moves: styleMoves },
+    });
+  }
+  openSourceDialog(source: any): void {
+    let sourceMoves = this.moves.filter(m => m.Source.Name === source.Name);
+    this.dialog.open(SourceComponent, {
+      width: '480px',
+      data: { source: source, moves: sourceMoves },
     });
   }
 }
