@@ -1,0 +1,18 @@
+<mat-card>
+    <mat-card-header class="header">
+        <mat-card-title>Style: {{data.style.Name}}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        {{data.style.Description}}
+    </mat-card-content>
+    <mat-card-content>
+        <h3>All moves in this style:</h3>
+        - <span *ngFor="let move of data.moves; let i=index;">{{move.Title}} - </span>
+    </mat-card-content>
+
+    <mat-card-actions class="button-wrapper">
+        <button mat-raised-button (click)="goBack()" color="primary">
+            Close
+        </button>
+    </mat-card-actions>
+</mat-card>
