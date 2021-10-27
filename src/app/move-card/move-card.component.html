@@ -36,7 +36,8 @@
                 <button mat-raised-button (click)="openSourceDialog(move.Source)" class="btn" color="primary">
                     Source
                 </button>
-                <a mat-raised-button class="btn" color="primary">
+                <a href={{move.VideoURL}} mat-raised-button class="btn" color="primary" target="_blank"
+                    rel="noopener noreferrer">
                     Video
                 </a><br>
             </mat-card-actions>
