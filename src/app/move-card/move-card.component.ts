@@ -20,7 +20,7 @@ export class MoveCardComponent implements OnInit {
     this.fetchApiData.getAllMoves().subscribe((resp: any) => {
       this.moves = resp;
 
-      console.log(this.moves);
+      // console.log(this.moves);
 
       return this.moves;
     });
