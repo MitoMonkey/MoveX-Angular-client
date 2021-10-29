@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 
 import { StyleComponent } from '../style/style.component';
 import { SourceComponent } from '../source/source.component';
+import { ProfileComponent } from '../profile/profile.component';
 
 @Component({
   selector: 'app-move-card',
@@ -63,6 +64,14 @@ export class MoveCardComponent implements OnInit {
     this.dialog.open(SourceComponent, {
       width: '480px',
       data: { source: source, moves: sourceMoves },
+    });
+  }
+
+  editProfile(): void {
+    let favMoves = this.moves.filter(m => this.user.FavoriteMoves.includes(m._id));
+    this.dialog.open(ProfileComponent, {
+      width: '480px',
+      data: { user: this.user, favs: favMoves },
     });
   }
 

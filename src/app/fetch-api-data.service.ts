@@ -111,7 +111,6 @@ export class FetchApiDataService {
   // API call to edit user data
   public editUser(newUserData: any): Observable<any> {
     const token = localStorage.getItem('token');
-    //const username = localStorage.getItem('username');
     const username = JSON.parse(localStorage.getItem('user') || '{}').Username;
     return this.http.put(apiUrl + 'users/' + username, { // may also need second argument: {}, 
       headers: new HttpHeaders(

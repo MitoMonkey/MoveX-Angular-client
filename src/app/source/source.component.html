@@ -1,4 +1,5 @@
 <mat-card>
+    <mat-card-content (click)="goBack()" class="close">X</mat-card-content>
     <mat-card-header class="header">
         <mat-card-title>Source: {{data.source.Name}}</mat-card-title>
     </mat-card-header>
@@ -10,9 +11,9 @@
         - <span *ngFor="let move of data.moves; let i=index;">{{move.Title}} - </span>
     </mat-card-content>
 
-    <mat-card-actions class="button-wrapper">
+    <!-- <mat-card-actions class="button-wrapper">
         <button mat-raised-button (click)="goBack()" color="primary">
             Close
         </button>
-    </mat-card-actions>
+    </mat-card-actions> -->
 </mat-card>

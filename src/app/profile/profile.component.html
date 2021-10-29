@@ -1,0 +1,54 @@
+<mat-card>
+
+    <mat-card-content (click)="goBack()" class="close">X</mat-card-content>
+
+    <mat-card-header class="header">
+        <mat-card-title>Your profile</mat-card-title>
+        <mat-card-subtitle>{{data.user.Username}}</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+        <p>Your favorite moves:</p>
+        - <span *ngFor="let move of data.favs; let i=index;">{{move.Title}} - </span>
+    </mat-card-content>
+
+    <mat-card-content>
+        <h2>Edit user data</h2>
+        <form>
+            <mat-form-field class="form-field">
+                <input matInput [(ngModel)]="userData.Username" placeholder={{data.user.Username}} type="text"
+                    name="Username" required>
+            </mat-form-field>
+            <mat-form-field class="form-field">
+                <input matInput [(ngModel)]="userData.Password" type="password" placeholder="Password" name="Password"
+                    required>
+            </mat-form-field>
+            <mat-form-field class="form-field">
+                <input matInput [(ngModel)]="userData.Email" type="email" placeholder={{data.user.Email}} name="Email"
+                    required>
+            </mat-form-field>
+            <mat-form-field class="form-field">
+                <input matInput [(ngModel)]="userData.Birthday" type="date" placeholder={{data.user.Birthday}}
+                    name="Birthday">
+            </mat-form-field>
+            <mat-card-actions class="button-wrapper">
+                <button mat-raised-button (click)="updateUser()" color="primary" type="submit">
+                    Save changes
+                </button>
+            </mat-card-actions>
+        </form>
+    </mat-card-content>
+
+    <mat-card-actions class="button-wrapper">
+        <button mat-raised-button (click)="deleteUser()" color="primary">
+            DELETE ACCOUNT
+        </button>
+        <p>THIS IS IRREVERSIBLE!</p>
+    </mat-card-actions>
+
+    <!-- <mat-card-actions class="button-wrapper">
+        <button mat-raised-button (click)="goBack()" color="primary">
+            Close window
+        </button>
+    </mat-card-actions> -->
+</mat-card>
