@@ -90,7 +90,7 @@ export class FetchApiDataService {
 
   // API call to get user data
   public getUserdata(): Observable<any> {
-    const username = localStorage.getItem('username');
+    const username = JSON.parse(localStorage.getItem('user') || '{}').Username;
     const token = localStorage.getItem('token');
     return this.http.get(apiUrl + 'users/' + username, {
       headers: new HttpHeaders(
@@ -111,8 +111,9 @@ export class FetchApiDataService {
   // API call to edit user data
   public editUser(newUserData: any): Observable<any> {
     const token = localStorage.getItem('token');
-    const username = localStorage.getItem('username');
-    return this.http.put(apiUrl + 'users/' + username, {
+    //const username = localStorage.getItem('username');
+    const username = JSON.parse(localStorage.getItem('user') || '{}').Username;
+    return this.http.put(apiUrl + 'users/' + username, { // may also need second argument: {}, 
       headers: new HttpHeaders(
         {
           Authorization: 'Bearer ' + token,
@@ -126,7 +127,7 @@ export class FetchApiDataService {
   // API call to delete user account
   public deleteUser(): Observable<any> {
     const token = localStorage.getItem('token');
-    const username = localStorage.getItem('username');
+    const username = JSON.parse(localStorage.getItem('user') || '{}').Username;
     return this.http.delete(apiUrl + 'users/' + username, {
       headers: new HttpHeaders(
         {
@@ -141,8 +142,8 @@ export class FetchApiDataService {
   // API call to add a move to the users list of favorites
   public addFavorite(moveID: string): Observable<any> {
     const token = localStorage.getItem('token');
-    const username = localStorage.getItem('username');
-    return this.http.post(apiUrl + 'users/' + username + '/moves/' + moveID, {
+    const username = JSON.parse(localStorage.getItem('user') || '{}').Username;
+    return this.http.post(apiUrl + 'users/' + username + '/moves/' + moveID, {}, {
       headers: new HttpHeaders(
         {
           Authorization: 'Bearer ' + token,
@@ -155,7 +156,7 @@ export class FetchApiDataService {
   // API call to remove a move to the users list of favorites
   public removeFavorite(moveID: string): Observable<any> {
     const token = localStorage.getItem('token');
-    const username = localStorage.getItem('username');
+    const username = JSON.parse(localStorage.getItem('user') || '{}').Username;
     return this.http.delete(apiUrl + 'users/' + username + '/moves/' + moveID, {
       headers: new HttpHeaders(
         {

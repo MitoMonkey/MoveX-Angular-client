@@ -13,6 +13,9 @@ import { SourceComponent } from '../source/source.component';
 export class MoveCardComponent implements OnInit {
 
   moves: any[] = [];
+  //user: any = [];
+  user: { [k: string]: any } = {}; // keys of the object "user" have to be strings. values can be anything.
+  // isFavorite: boolean = false;
 
   constructor(
     public fetchApiData: FetchApiDataService,
@@ -21,15 +24,30 @@ export class MoveCardComponent implements OnInit {
 
   ngOnInit(): void {
     this.getMoves();
+    this.user = JSON.parse(localStorage.getItem('user') || '{}');
+    // console.log(this.user);
   }
 
   getMoves(): void {
     this.fetchApiData.getAllMoves().subscribe((resp: any) => {
       this.moves = resp;
-
-      // console.log(this.moves);
-
       return this.moves;
+    });
+  }
+
+  isFav(moveID: string): boolean {
+    return this.user.FavoriteMoves.includes(moveID);
+  }
+  addFav(moveID: string): void {
+    this.fetchApiData.addFavorite(moveID).subscribe((resp: any) => {
+      localStorage.setItem('user', JSON.stringify(resp));
+      this.user = resp;
+    });
+  }
+  removeFav(moveID: string): void {
+    this.fetchApiData.removeFavorite(moveID).subscribe((resp: any) => {
+      localStorage.setItem('user', JSON.stringify(resp));
+      this.user = resp;
     });
   }
 

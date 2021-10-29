@@ -30,6 +30,12 @@
         </div>
         <div>
             <mat-card-actions class="actions">
+                <mat-icon *ngIf="isFav(move._id); else isNotFav" (click)="removeFav(move._id)">favorite</mat-icon>
+                <ng-template #isNotFav>
+                    <mat-icon (click)="addFav(move._id)">favorite_border</mat-icon>
+                </ng-template>
+            </mat-card-actions>
+            <mat-card-actions class="actions">
                 <button mat-raised-button (click)="openStyleDialog(move.Style)" class="btn" color="primary">
                     Style
                 </button>
@@ -40,9 +46,6 @@
                     rel="noopener noreferrer">
                     Video
                 </a><br>
-            </mat-card-actions>
-            <mat-card-actions class="actions">
-                <mat-icon>favorite_border</mat-icon>
             </mat-card-actions>
         </div>
 

@@ -47,6 +47,15 @@
     justify-content: center;
   }
 
+  .mat-icon {
+    font-size: 30px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+  }
+  .mat-icon:hover {
+    transform: translateX(-3px);
+    font-size: 36px;
+  }
 
 /*
   a,
