@@ -65,4 +65,11 @@ export class MoveCardComponent implements OnInit {
       data: { source: source, moves: sourceMoves },
     });
   }
+
+  logout(): void {
+    this.user = [];
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    window.open('/', '_self');
+  }
 }

@@ -1,3 +1,47 @@
+  .toolbar {
+    height: 60px;
+    width: 100%;
+    /* display: flex; */
+    /* flex-direction: row;
+    justify-content: center;
+    align-items: center; */
+    text-align: center;
+    //padding: 0 16px;
+    background-color: #343a40;
+    color: #f1f1f1;
+    font-weight: 600;
+    font-size: 24px;
+    position: fixed;
+    top: 0;
+    left: 0;
+  }
+  .heading {
+    padding-top: 20px;
+  }
+  .nav-actions {
+    position: absolute;
+    top: 12px;
+    right: 50px;
+  }
+  .nav-btn {
+    border-radius: 4px;
+    height: 35px;
+    width: 80px;
+    //margin: 0 !important;
+    transition: all 0.2s ease-in-out;
+    line-height: 24px;
+  }
+  .nav-btn:hover {
+    box-shadow: 0 4px 17px rgba(255, 255, 255, 0.35);
+  }
+
+
+  .card-container {
+    display: flex;
+    margin-top: 60px;
+  }
+
+  
   .card {
     display: flex;
     flex-direction: column;

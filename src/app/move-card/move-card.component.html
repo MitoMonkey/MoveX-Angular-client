@@ -1,23 +1,16 @@
-<!-- STYLES FROM ORIGINAL ANGULAR TEMPLATE > SEE COMPONENT SCSS
+<!-- Toolbar -->
+<div class="toolbar" role="banner">
+    <div class="heading">Welcome to MoveX</div>
+
+    <span class="nav-actions">
+        <button mat-raised-button (click)="logout()" class="nav-btn" color="primary">
+            Logout
+        </button>
+    </span>
+
+</div>
+
 <div class="card-container">
-    <a class="card" target="_blank" rel="noopener" href="https://angular.io/tutorial">
-        <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-            <path d="M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82zM12 3L1 9l11 6 9-4.91V17h2V9L12 3z" />
-        </svg>
-        <span>Learn Angular</span>
-        <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-            <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" />
-        </svg> </a> 
-
-    <button class="card card-small" (click)="selection.value = 'component'" tabindex="0">
-        <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-            <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
-        </svg>
-        <span>New Component</span>
-    </button> 
-</div> -->
-
-<div style="display: flex;">
     <mat-card *ngFor="let move of moves; let i=index;" class="card">
         <!-- *ngFor directive is used to display all returned moves, with each move in its own card -->
         <div>

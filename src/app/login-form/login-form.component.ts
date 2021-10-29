@@ -16,7 +16,7 @@ import { FetchApiDataService } from '../fetch-api-data.service';
 })
 export class LoginFormComponent implements OnInit {
 
-  // bind form input values to userData object
+  // bind form input values to userCredentials object
   @Input() userCredentials = { Username: '', Password: '' };
 
   constructor(
