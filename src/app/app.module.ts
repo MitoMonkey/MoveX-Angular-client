@@ -24,11 +24,7 @@ import { StyleComponent } from './style/style.component';
 import { SourceComponent } from './source/source.component';
 import { ProfileComponent } from './profile/profile.component';
 
-const appRoutes: Routes = [
-  { path: 'welcome', component: WelcomePageComponent },
-  { path: 'moves', component: MoveCardComponent },
-  { path: '', redirectTo: 'welcome', pathMatch: 'prefix' },
-];
+
 
 @NgModule({
   declarations: [
@@ -54,8 +50,7 @@ const appRoutes: Routes = [
     MatFormFieldModule,
     MatDialogModule,
     MatSnackBarModule,
-    MatIconModule,
-    RouterModule.forRoot(appRoutes)
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]
