@@ -131,7 +131,7 @@ export class FetchApiDataService {
       headers: new HttpHeaders(
         {
           Authorization: 'Bearer ' + token,
-        })
+        }), responseType: 'text' as const
     }).pipe(
       map(this.extractResponseData),
       catchError(this.handleError)

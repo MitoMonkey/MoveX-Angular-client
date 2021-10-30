@@ -16,7 +16,7 @@ import { FetchApiDataService } from '../fetch-api-data.service';
 export class ProfileComponent implements OnInit {
 
   // bind form input values to userData object
-  @Input() userData = { Username: this.data.user.Username, Password: '', Email: this.data.user.Email, Birthday: this.data.user.Birthday.split('T')[0] };
+  @Input() userData = { Username: this.data.user.Username, Password: '', Email: this.data.user.Email, Birthday: (this.data.user.Birthday ? this.data.user.Birthday.split('T')[0] : '') };
 
   constructor(
     public fetchApiData: FetchApiDataService,
@@ -55,8 +55,9 @@ export class ProfileComponent implements OnInit {
 
       localStorage.removeItem('token');
       localStorage.removeItem('user');
+      console.log('yes');
 
-      let successMessage = 'Success: ' + result;
+      let successMessage = 'Sucessfully deleted account.' // 'Success: ' + result;
       this.snackBar.open(successMessage, '', {
         duration: 4000
       });
