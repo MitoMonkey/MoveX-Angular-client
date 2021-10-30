@@ -16,7 +16,7 @@ import { FetchApiDataService } from '../fetch-api-data.service';
 export class ProfileComponent implements OnInit {
 
   // bind form input values to userData object
-  @Input() userData = { Username: '', Password: '', Email: '', Birthday: '' };
+  @Input() userData = { Username: this.data.user.Username, Password: '', Email: this.data.user.Email, Birthday: this.data.user.Birthday.split('T')[0] };
 
   constructor(
     public fetchApiData: FetchApiDataService,
@@ -32,16 +32,17 @@ export class ProfileComponent implements OnInit {
   updateUser(): void {
     this.fetchApiData.editUser(this.userData).subscribe((result) => {
 
-      console.log(result.token)
-      // localStorage.setItem('token', result.token);
-      localStorage.setItem('user', JSON.stringify(result.user));
+      localStorage.removeItem('token');
+      localStorage.removeItem('user');
 
-      this.dialogRef.close(); // This will close the modal on success. (it is opened in the root component method openUserRegistrationDialog)
-
-      let successMessage = 'Successfully updated user data.';
-      this.snackBar.open(successMessage, '', {
+      let successMessage = 'Successfully updated. Redirecting to login...';
+      this.snackBar.open(successMessage, 'OK', {
         duration: 4000
       });
+
+      this.dialogRef.close();
+      window.open('/', '_self');
+
     }, (result) => {
       console.log(result);
       this.snackBar.open(result, 'OK', {

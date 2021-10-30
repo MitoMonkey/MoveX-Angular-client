@@ -16,20 +16,18 @@
         <h2>Edit user data</h2>
         <form>
             <mat-form-field class="form-field">
-                <input matInput [(ngModel)]="userData.Username" placeholder={{data.user.Username}} type="text"
-                    name="Username" required>
+                <input matInput [(ngModel)]="userData.Username" placeholder='Username' type="text" name="Username"
+                    required>
             </mat-form-field>
             <mat-form-field class="form-field">
                 <input matInput [(ngModel)]="userData.Password" type="password" placeholder="Password" name="Password"
                     required>
             </mat-form-field>
             <mat-form-field class="form-field">
-                <input matInput [(ngModel)]="userData.Email" type="email" placeholder={{data.user.Email}} name="Email"
-                    required>
+                <input matInput [(ngModel)]="userData.Email" type="email" placeholder='Email' name="Email" required>
             </mat-form-field>
             <mat-form-field class="form-field">
-                <input matInput [(ngModel)]="userData.Birthday" type="date" placeholder={{data.user.Birthday}}
-                    name="Birthday">
+                <input matInput [(ngModel)]="userData.Birthday" type="date" placeholder='Birthday' name="Birthday">
             </mat-form-field>
             <mat-card-actions class="button-wrapper">
                 <button mat-raised-button (click)="updateUser()" color="primary" type="submit">
@@ -43,7 +41,7 @@
         <button mat-raised-button (click)="deleteUser()" color="primary">
             DELETE ACCOUNT
         </button>
-        <p>THIS IS IRREVERSIBLE!</p>
+        <p class="warning">DELETION IS IRREVERSIBLE!</p>
     </mat-card-actions>
 
     <!-- <mat-card-actions class="button-wrapper">
