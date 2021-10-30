@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http'; // to make API requests
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'; // FormsModule is required for template-driven forms ; ReactiveFormsModule for reactive forms
-import { RouterModule, Routes } from '@angular/router'; // for routing between different views
+// import { RouterModule, Routes } from '@angular/router'; // for routing between different views > MOVED TO app-routing.module.ts
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatInputModule } from '@angular/material/input';
@@ -23,12 +23,6 @@ import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 import { StyleComponent } from './style/style.component';
 import { SourceComponent } from './source/source.component';
 import { ProfileComponent } from './profile/profile.component';
-
-const appRoutes: Routes = [
-  { path: 'welcome', component: WelcomePageComponent },
-  { path: 'moves', component: MoveCardComponent },
-  { path: '', redirectTo: 'welcome', pathMatch: 'prefix' },
-];
 
 @NgModule({
   declarations: [
@@ -54,8 +48,7 @@ const appRoutes: Routes = [
     MatFormFieldModule,
     MatDialogModule,
     MatSnackBarModule,
-    MatIconModule,
-    RouterModule.forRoot(appRoutes)
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

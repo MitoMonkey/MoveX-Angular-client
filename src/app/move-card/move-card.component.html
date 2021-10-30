@@ -3,9 +3,10 @@
     <div class="heading">Welcome to MoveX</div>
 
     <span class="nav-actions">
-        <button mat-raised-button (click)="editProfile()" class="nav-btn" color="primary">
+        <button mat-raised-button routerLink="/profile" routerLinkActive="active" class="nav-btn" color="primary">
             Profile
         </button>
+
         <button mat-raised-button (click)="logout()" class="nav-btn" color="primary">
             Logout
         </button>

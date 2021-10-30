@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FetchApiDataService } from '../fetch-api-data.service';
 import { MatDialog } from '@angular/material/dialog';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 import { StyleComponent } from '../style/style.component';
 import { SourceComponent } from '../source/source.component';
@@ -20,7 +21,9 @@ export class MoveCardComponent implements OnInit {
 
   constructor(
     public fetchApiData: FetchApiDataService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    public router: Router,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
@@ -73,6 +76,8 @@ export class MoveCardComponent implements OnInit {
       width: '480px',
       data: { user: this.user, favs: favMoves },
     });
+
+    //this.router.navigate(['profile']);
   }
 
   logout(): void {
