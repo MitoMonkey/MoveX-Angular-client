@@ -55,15 +55,16 @@ export class ProfileComponent implements OnInit {
 
       localStorage.removeItem('token');
       localStorage.removeItem('user');
-      console.log('yes');
 
-      let successMessage = 'Sucessfully deleted account.' // 'Success: ' + result;
+      let successMessage = 'Sucessfully deleted account. Logging out...' // 'Success: ' + result;
       this.snackBar.open(successMessage, '', {
-        duration: 4000
+        duration: 2000
       });
 
-      this.dialogRef.close();
-      window.open('/', '_self');
+      setTimeout(() => {
+        this.dialogRef.close();
+        window.open('/', '_self');
+      }, 2000);
 
     }, (result) => {
       console.log(result);

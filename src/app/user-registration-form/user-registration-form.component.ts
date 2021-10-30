@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
 
 // to close the dialog on success
 import { MatDialogRef } from '@angular/material/dialog';
@@ -22,7 +23,8 @@ export class UserRegistrationFormComponent implements OnInit {
   constructor(
     public fetchApiData: FetchApiDataService,
     public dialogRef: MatDialogRef<UserRegistrationFormComponent>,
-    public snackBar: MatSnackBar
+    public snackBar: MatSnackBar,
+    public router: Router
   ) { }
 
   // ngOnInit method is called once the component has received all its inputs (all its data-bound properties)
@@ -36,10 +38,15 @@ export class UserRegistrationFormComponent implements OnInit {
       this.dialogRef.close(); // This will close the modal on success. (it is opened in the root component method openUserRegistrationDialog)
       // console.log(result);
 
-      let successMessage = 'Successfully registered new user: ' + result.Username;
+      let successMessage = 'Success! Loggin you in now...';
       this.snackBar.open(successMessage, 'OK', {
-        duration: 4000
+        duration: 3000
       });
+      let userCredentials = { Username: this.userData.Username, Password: this.userData.Password }
+      setTimeout(() => {
+        this.login(userCredentials);
+      }, 2000);
+
     }, (result) => {
       console.log(result);
       this.snackBar.open(result, 'OK', {
@@ -48,4 +55,28 @@ export class UserRegistrationFormComponent implements OnInit {
     });
   }
 
+
+  login(userCredentials: object): void {
+    this.fetchApiData.userLogin(userCredentials).subscribe((result) => {
+
+      localStorage.setItem('token', result.token);
+      localStorage.setItem('user', JSON.stringify(result.user));
+
+      this.dialogRef.close(); // This will close the modal on success. (it is opened in the root component method openUserRegistrationDialog)
+
+      /* let successMessage = 'Successfully logged in user: ' + result.user.Username;
+      this.snackBar.open(successMessage, 'OK', {
+        duration: 4000
+      }); */
+
+      // redirct to moves view
+      this.router.navigate(['moves']);
+
+    }, (result) => {
+      console.log(result);
+      this.snackBar.open(result, 'OK', {
+        duration: 4000
+      });
+    });
+  }
 }
