@@ -10,12 +10,19 @@ const apiUrl = 'https://move-x.herokuapp.com/';
   providedIn: 'root' // make service available for all components
 })
 export class FetchApiDataService {
-  // Inject the HttpClient module to the constructor params
-  // This will provide HttpClient to the entire class, making it available via this.http
+
+  /**
+    * Inject the HttpClient module to the constructor params to make it available in the entire class via this.http
+    * @ignore
+  */
   constructor(private http: HttpClient) { // "private" is the namespace, "HttpClient" the type
   }
 
-  // API call for the user registration endpoint
+  /**
+   * HTTP POST request to the API user registration endpoint
+   * @param userDetails Username, Password, Email, (optional) Birthday
+   * @returns user data object
+  */
   public userRegistration(userDetails: any): Observable<any> {
     // console.log(userDetails);
     return this.http.post(apiUrl + 'users', userDetails).pipe(
@@ -23,16 +30,23 @@ export class FetchApiDataService {
     );
   }
 
-  // API call for the user login endpoint
+  /**
+   * HTTP POST request to the API user login endpoint
+   * @param userCredentials Username, Password
+   * @returns user data object
+  */
   public userLogin(userCredentials: any): Observable<any> {
-    // console.log(userCredentials);
     return this.http.post(apiUrl + 'login', userCredentials).pipe(
       map(this.extractResponseData),
       catchError(this.handleError)
     );
   }
 
-  // API call for the get all moves
+  /**
+   * HTTP GET request to fetch all moves data from the API
+   * @param token JWT from localStorage as "Bearer" in HTML header for authorization
+   * @returns moves object
+  */
   public getAllMoves(): Observable<any> {
     const token = localStorage.getItem('token');
     return this.http.get(apiUrl + 'moves', {
@@ -46,7 +60,11 @@ export class FetchApiDataService {
     );
   }
 
-  // API call for the get one move
+  /**
+   * HTTP GET request to fetch data about one move from the API
+   * @param token JWT from localStorage as "Bearer" in HTML header for authorization
+   * @returns move object
+  */
   public getMove(title: string): Observable<any> {
     const token = localStorage.getItem('token');
     return this.http.get(apiUrl + 'moves/' + title, {
@@ -60,7 +78,11 @@ export class FetchApiDataService {
     );
   }
 
-  // API call for the get one Style
+  /**
+   * HTTP GET request to fetch data about one style from the API
+   * @param token JWT from localStorage as "Bearer" in HTML header for authorization
+   * @returns style object
+  */
   public getStyle(name: string): Observable<any> {
     const token = localStorage.getItem('token');
     return this.http.get(apiUrl + 'styles/' + name, {
@@ -74,7 +96,11 @@ export class FetchApiDataService {
     );
   }
 
-  // API call for the get one Source
+  /**
+   * HTTP GET request to fetch data about one source from the API
+   * @param token JWT from localStorage as "Bearer" in HTML header for authorization
+   * @returns source object
+  */
   public getSource(name: string): Observable<any> {
     const token = localStorage.getItem('token');
     return this.http.get(apiUrl + 'sources/' + name, {
@@ -88,7 +114,12 @@ export class FetchApiDataService {
     );
   }
 
-  // API call to get user data
+  /**
+   * HTTP GET request to fetch user data from the API
+   * @param token JWT from localStorage as "Bearer" in HTML header for authorization
+   * @param username from localStorage
+   * @returns user object
+  */
   public getUserdata(): Observable<any> {
     const username = JSON.parse(localStorage.getItem('user') || '{}').Username;
     const token = localStorage.getItem('token');
@@ -103,12 +134,19 @@ export class FetchApiDataService {
     );
   }
 
-  // get favorites of a uses
+  // get favorites of a user
   /* public getFavorites(Username: string): Observable<any> {
     return this.getUser(Username).user.FavoriteMoves;
   } */
 
   // API call to edit user data
+  /**
+   * HTTP PUT request to update user data in the API
+   * @param newUserData the new user data
+   * @param token JWT from localStorage as "Bearer" in HTML header for authorization
+   * @param username from localStorage
+   * @returns user object (with updated data from the API)
+   */
   public editUser(newUserData: any): Observable<any> {
     const token = localStorage.getItem('token');
     const username = JSON.parse(localStorage.getItem('user') || '{}').Username;
@@ -123,7 +161,12 @@ export class FetchApiDataService {
     );
   }
 
-  // API call to delete user account
+  /**
+   * HTTP DELETE request to remove a user from the API
+   * @param token JWT from localStorage as "Bearer" in HTML header for authorization
+   * @param username from localStorage
+   * @returns success message as string
+   */
   public deleteUser(): Observable<any> {
     const token = localStorage.getItem('token');
     const username = JSON.parse(localStorage.getItem('user') || '{}').Username;
@@ -138,7 +181,12 @@ export class FetchApiDataService {
     );
   }
 
-  // API call to add a move to the users list of favorites
+  /**
+   * HTTP POST request to add a move to the users list of favorites in the API
+   * @param token JWT from localStorage as "Bearer" in HTML header for authorization
+   * @param username from localStorage
+   * @returns user object
+   */
   public addFavorite(moveID: string): Observable<any> {
     const token = localStorage.getItem('token');
     const username = JSON.parse(localStorage.getItem('user') || '{}').Username;
@@ -152,7 +200,13 @@ export class FetchApiDataService {
       catchError(this.handleError)
     );
   }
-  // API call to remove a move to the users list of favorites
+
+  /**
+   * HTTP DELETE request to remove a move from the users list of favorites in the API
+   * @param token JWT from localStorage as "Bearer" in HTML header for authorization
+   * @param username from localStorage
+   * @returns user object
+  */
   public removeFavorite(moveID: string): Observable<any> {
     const token = localStorage.getItem('token');
     const username = JSON.parse(localStorage.getItem('user') || '{}').Username;
@@ -168,13 +222,21 @@ export class FetchApiDataService {
   }
 
 
-
-  // Non-typed response extraction
+  /**
+   * Non-typed response extraction
+   * @param res 
+   * @returns respone body
+   */
   private extractResponseData(res: Response | Object): any {
     const body = res;
     return body || {};
   }
 
+  /**
+   * Error handler
+   * @param error 
+   * @returns 
+   */
   private handleError(error: HttpErrorResponse): any {
     let errorMessage;
     if (error.error instanceof ErrorEvent) {

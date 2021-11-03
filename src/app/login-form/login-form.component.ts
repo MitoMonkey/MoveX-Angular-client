@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 
 // to close the dialog on success
@@ -14,11 +14,17 @@ import { FetchApiDataService } from '../fetch-api-data.service';
   templateUrl: './login-form.component.html',
   styleUrls: ['./login-form.component.scss']
 })
-export class LoginFormComponent implements OnInit {
+export class LoginFormComponent {
 
-  // bind form input values to userCredentials object
+  /** 
+   * bind form input values to userCredentials object 
+   */
   @Input() userCredentials = { Username: '', Password: '' };
 
+  /**
+    * All constructor items are documented as properties
+    * @ignore
+  */
   constructor(
     public fetchApiData: FetchApiDataService,
     public dialogRef: MatDialogRef<LoginFormComponent>,
@@ -27,10 +33,12 @@ export class LoginFormComponent implements OnInit {
   ) { }
 
   // ngOnInit method is called once the component has received all its inputs (all its data-bound properties)
-  ngOnInit(): void {
-  }
 
-  // function to send form inputs to the backend
+  /**
+   * Login method: 
+   * send form inputs to the backend, then open a successMessage and redirect to {@link MoveCardComponent}
+   * @params {@link userCredentials}
+   */
   login(): void {
     this.fetchApiData.userLogin(this.userCredentials).subscribe((result) => {
 

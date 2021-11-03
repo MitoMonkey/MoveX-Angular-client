@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Inject } from '@angular/core';
+import { Component, Input, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog'; // to receive data from move-card
 // to close the dialog on success
 import { MatDialogRef } from '@angular/material/dialog';
@@ -13,11 +13,17 @@ import { FetchApiDataService } from '../fetch-api-data.service';
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss']
 })
-export class ProfileComponent implements OnInit {
+export class ProfileComponent {
 
-  // bind form input values to userData object
+  /**
+   * bind form input values to userData object and prefill form fields with data from {@link user}
+   */
   @Input() userData = { Username: this.data.user.Username, Password: '', Email: this.data.user.Email, Birthday: (this.data.user.Birthday ? this.data.user.Birthday.split('T')[0] : undefined) };
 
+  /**
+    * All constructor items are documented as properties
+    * @ignore
+  */
   constructor(
     public fetchApiData: FetchApiDataService,
     public dialogRef: MatDialogRef<ProfileComponent>,
@@ -25,10 +31,9 @@ export class ProfileComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: { user: any, favs: any }
   ) { }
 
-  ngOnInit(): void {
-  }
-
-  // function to update user data on backend and local storage
+  /**
+   * update user data on backend, remove user data and token from localStorage, then redirect to {@link WelcomePageComponent}
+   */
   updateUser(): void {
     this.fetchApiData.editUser(this.userData).subscribe((result) => {
 
@@ -50,6 +55,9 @@ export class ProfileComponent implements OnInit {
       });
     });
   }
+  /**
+   * delete user account in backend and localStorage, then redirect to {@link WelcomePageComponent}
+   */
   deleteUser(): void {
     this.fetchApiData.deleteUser().subscribe((result) => {
 
@@ -74,6 +82,9 @@ export class ProfileComponent implements OnInit {
     });
   }
 
+  /**
+   * close modal
+   */
   goBack(): void {
     this.dialogRef.close();
   }

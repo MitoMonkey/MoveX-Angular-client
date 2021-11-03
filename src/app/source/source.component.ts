@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog'; // to receive data from move-card
 import { MatDialogRef } from '@angular/material/dialog'; // to close the dialog on success
 
@@ -7,16 +7,16 @@ import { MatDialogRef } from '@angular/material/dialog'; // to close the dialog 
   templateUrl: './source.component.html',
   styleUrls: ['./source.component.scss']
 })
-export class SourceComponent implements OnInit {
+export class SourceComponent {
 
   constructor(
     public dialogRef: MatDialogRef<SourceComponent>,
     @Inject(MAT_DIALOG_DATA) public data: { source: any, moves: any }
   ) { }
 
-  ngOnInit(): void {
-  }
-
+  /**
+   * close modal
+   */
   goBack(): void {
     this.dialogRef.close();
   }
