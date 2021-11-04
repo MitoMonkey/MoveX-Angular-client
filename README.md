@@ -50,3 +50,9 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 
 ## Further help
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+## Things that could be improved
+* Form validation (a thorough version is implemented in the react version. The topic was neglected in the Angular version, as it is just a study project with a different focus).
+* Deleting an account or updating user data should require a password confirmation.
+* A new "SingleMove" component, similar to MoveCard could be added to show individual moves (with details) in ProfileView (favorites), StyleView and SourceView.
+* Mat-dialog does not seem to perfectly responsive. At least vertical scrolling does not always appear…
