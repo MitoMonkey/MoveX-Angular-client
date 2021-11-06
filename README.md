@@ -8,10 +8,10 @@ This repo is a single-page, responsive Angular frontent. It was generated with [
 There is also a [React Client](https://github.com/MitoMonkey/MoveX-client.
 The backend can be found here: [MoveX backend](https://github.com/MitoMonkey/MoveX-backend)
 
-API and client were created as a study project during my Fullstack Webdeveloper course @CarrerFoundry.
+API and clients were created as a study project during my Fullstack Webdeveloper course @CarrerFoundry.
 
 ## Live Demo
-[Live app](https://mitomonkey.github.io/MoveX-Angular-client/welcome)
+[Live app](https://mitomonkey.github.io/MoveX-Angular-client/)
 
 ![Screenshot](./src/assets/Screenshot.png)
 
